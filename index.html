@@ -125,3 +125,28 @@
     <script src="js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>
+Listen 90
+
+<VirtualHost *:90>
+  AllowEncodedSlashes On
+       DocumentRoot "C:\xampp\htdocs\bitel_videoplay\api\web"
+
+       <Directory "C:\xampp\htdocs\bitel_videoplay\api\web">
+           # use mod_rewrite for pretty URL support
+           RewriteEngine on
+           # If a directory or a file exists, use the request directly
+           RewriteCond %{REQUEST_FILENAME} !-f
+           RewriteCond %{REQUEST_FILENAME} !-d
+           # Otherwise forward the request to index.php
+           RewriteRule . index.php
+
+           DirectoryIndex index.php
+
+  Options Indexes FollowSymLinks MultiViews
+        AllowOverride all
+        Order Deny,Allow
+        Allow from all
+        Require all granted
+
+       </Directory>
+   </VirtualHost>
